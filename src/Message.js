@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function Message() {
-   
+  let history = useHistory();
     const [render, setrender] = useState(1)
     const [Gname, setGname] = useState()
     const location = useLocation();
@@ -17,6 +18,9 @@ function Message() {
       .then((response) => {
         alert(response.data.message);
       });
+      document.getElementById('msg').value='';
+      history.push("/announce");
+
   };
   if(render){
   if(location.state)
@@ -34,7 +38,7 @@ setrender(0)
           setmessage(e.target.value);
         }}
         style={{marginTop:'20px'}}
-        
+        id='msg'
         rows='8'
         cols='70'
       ></textarea>
