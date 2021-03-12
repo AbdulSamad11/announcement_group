@@ -19,8 +19,8 @@ function Groups() {
   setmain(0);
   }
     return (
-      <div>
-      <h1>Creating Groups</h1>
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100vh'}}>
+      <h1 style={{textAlign:'center'}}>Creating Groups</h1>
        <input
         disabled={disabled}
           name="gname"
@@ -39,9 +39,9 @@ function Groups() {
             setemail(e.target.value);
           }}
         ></input>
-        <button className='but' onClick={add}>add</button>
+        <button className='but' style={{position:'absolute',marginTop:'200px',marginRight:'190px'}} onClick={add}>add</button>
         <a href='/main'>
-        <button className='but' style={{background:'green'}}>Done</button>
+        <button className='but' style={{background:'green',position:'absolute',marginLeft:'50px',marginTop:'18px'}}>Done</button>
         </a>
       </div>
     );

@@ -11,14 +11,32 @@ const [groups, setgroups] = useState([])
       setgroups(response.data)
     })
   },[])
+  function deleteGroup (p){
+    const r = window.confirm('Confirm Remove this group')
+    if(r===true){
+     axios.post('http://localhost:3001/deleteGroup',
+     {
+       id: p.id,
+       name: p.name,
+     })
+     window.location.reload();
+   }
+   else{
+     // window.location.reload();
+     alert('not deleted')
+   }
+   }
+ 
     return (
-      <div>
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100vh'}}>
       
        <h1>Announcement Section</h1>
        {groups.map((val) => {
-          return (
-        <p key={val.id} onClick={()=>{history.replace('/Message',{params:val})}}>{val.name}</p>
-          );
+          return (<div key={val.id} style={{display:'block'}}>
+        <span style={{fontSize:'1.4rem'}} key={val.id} >{val.name}</span>
+<i className="fa fa-envelope" onClick={()=>{history.push('/Message',{params:val})}} style={{fontSize:'20px',margin:'4px',cursor:'pointer'}}></i>
+<i className='fas fa-calendar' onClick={()=>{deleteGroup(val)}} style={{fontSize:'20px',margin:'4px',cursor:'pointer'}}></i>
+          </div>);
         })}
 
       </div>

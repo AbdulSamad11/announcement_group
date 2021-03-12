@@ -8,6 +8,7 @@ function Message() {
     const [Gname, setGname] = useState()
     const location = useLocation();
   const [message, setmessage] = useState();
+  
   const send = () => {
     axios.post("http://localhost:3001/sendMessage", {
         message: message,
@@ -25,12 +26,14 @@ setrender(0)
   }
     }
   return (
-    <div style={{ textAlign:'center'}}>
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100vh'}}>
+    <h1>Making a Announcement</h1>
       <textarea
         placeholder="Enter your message"
         onChange={(e) => {
           setmessage(e.target.value);
         }}
+        style={{marginTop:'20px'}}
         
         rows='8'
         cols='70'

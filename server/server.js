@@ -18,6 +18,7 @@ const db = mysql.createPool({
 app.get("/api/get", (req, res) => {
   res.end("express");
 });
+
 app.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -90,5 +91,17 @@ app.post("/sendMessage", (req, res) => {
     mailOptions.text='';
   });
 });
+
+app.post("/deleteGroup", (req, res) => {
+  const id = req.body.id;
+  const name = req.body.name;
+  console.log(name)
+  const insert = "delete from ag.groups where id=?";
+  db.query(insert, id);
+  const insert1 = "delete from ag.members where name=?";
+  db.query(insert, name);
+});
+
+
 
 app.listen(process.env.PORT || 3001);
