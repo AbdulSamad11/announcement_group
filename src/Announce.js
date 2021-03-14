@@ -28,17 +28,20 @@ const [groups, setgroups] = useState([])
    }
  
     return (
-      <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100vh'}}>
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',minHeight:'100vh'}}>
       
-       <h1>Announcement Section</h1>
+       <h1 style={{padding:'10px'}}>Announcement Section</h1>
+       <ol>
        {groups.map((val) => {
           return (<div key={val.id} style={{display:'block'}}>
-        <span style={{fontSize:'1.4rem'}} key={val.id} >{val.name}</span>
-<i className="fa fa-envelope" onClick={()=>{history.push('/Message',{params:val})}} style={{fontSize:'20px',margin:'4px',cursor:'pointer'}}></i>
+          <div style={{width:'200px',padding:'5px',border:'2px solid black',borderRadius:'5px'}}>
+        <li style={{fontSize:'1.4rem'}} key={val.id} >{val.name}</li>
+<i className="fa fa-envelope" onClick={()=>{history.push('/Message',{params:val})}} style={{fontSize:'20px',cursor:'pointer'}}></i>
 <i className='fas fa-calendar' onClick={()=>{deleteGroup(val)}} style={{fontSize:'20px',margin:'4px',cursor:'pointer'}}></i>
+          </div>
           </div>);
         })}
-
+</ol>
       </div>
     );
   }

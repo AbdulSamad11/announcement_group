@@ -21,7 +21,7 @@ const Login = ()=>{
   };
 
 return (<div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100vh'}}>
-<h1>Login</h1>
+<h1>Admin Login</h1>
 <input
           name="username"
           type="text"
