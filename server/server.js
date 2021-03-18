@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 var cors = require("cors");
 const mysql = require("mysql");
+var cron = require('node-cron');
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 
@@ -10,7 +11,9 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+cron.schedule('46 * * * * *', () => {
+  console.log("runs in every second")
+});
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
