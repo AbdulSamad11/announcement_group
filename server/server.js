@@ -11,9 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-cron.schedule('46 * * * * *', () => {
-  console.log("runs in every second")
-});
+
 const db = mysql.createPool({
   host: "localhost",
   user: "root",
@@ -107,6 +105,31 @@ app.post("/sendMessage", (req, res) => {
   });
 });
 
+app.post("/sendMessageSch", (req, res) => {
+
+  cron.schedule('0 '+req.body.date+' *', () => {
+  const name = req.body.name;
+  mailOptions.text=req.body.message;
+  const insert = "SELECT mumber_email FROM ag.members where group_name=?;";
+  var people = [];
+  db.query(insert, name, (err, result, fields) => {
+    var i = 0;
+
+    while (result[i]) {
+      people.push(result[i].mumber_email);
+      i++;
+    }
+    var i,fLen;
+    fLen = people.length;
+    for (i = 0; i < fLen; i++) {
+        mailOptions.to=people[i];
+         transporter.sendMail(mailOptions);
+    }
+    mailOptions.to='';
+    mailOptions.text='';
+  });
+});
+});
 
 app.post("/deleteGroup", (req, res) => {
   const id = req.body.id;

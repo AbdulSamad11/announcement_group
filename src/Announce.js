@@ -38,6 +38,7 @@ const [groups, setgroups] = useState([])
         <li style={{fontSize:'1.4rem'}} key={val.id} >{val.name}</li>
 <i className="fa fa-envelope" onClick={()=>{history.push('/Message',{params:val})}} style={{fontSize:'20px',cursor:'pointer'}}></i>
 <i className='fas fa-calendar' onClick={()=>{deleteGroup(val)}} style={{fontSize:'20px',margin:'4px',cursor:'pointer'}}></i>
+<span onClick={()=>{history.push('/Schedule',{params:val})}} style={{marginLeft:'40%',marginBottom:'0',background:'#363131',color:'white',padding:'2px',borderRadius:'2px',cursor:'pointer'}}>schedule</span>
           </div>
           </div>);
         })}

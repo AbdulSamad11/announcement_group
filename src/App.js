@@ -4,6 +4,7 @@ import Main from './Main'
 import Announce from './Announce'
 import Groups from './Groups'
 import Message from './Message'
+import Schedule from './Schedule'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
     <Route exact path='/announce' component={Announce}/>
     <Route exact path='/group' component={Groups}/>
     <Route exact path='/Message' component={Message}/>
+    <Route exact path='/Schedule' component={Schedule}/>
     </Switch> 
   );
 }
